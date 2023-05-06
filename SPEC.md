@@ -4,6 +4,15 @@ Wc kód menedzselő alkalmazás, melyben a regisztrált és bejelentkezett felha
 Az alkalmazás Angular használatával fog elkészülni. A megjelenítéshez Angular Material és Tailwind css lesz alkalmazva, saját css-el kiegészítve.
 Az oldalak és megjelenítés koncepcióját tekintve a szerveroldai félévesre elkészített alkalmazáshoz hasonló lesz. Onnan csatolok be pár képet.
 
+### Technológia
+| Technológia |
+| - |
+| Angular |
+| Angular Material |
+| Tailwind |
+| Bootstrap |
+| MVC backend |
+
 ### Funkció lista
 | Funkció |
 | - |
