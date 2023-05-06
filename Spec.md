@@ -1,2 +1,0 @@
-Feladat specifikáció
-
