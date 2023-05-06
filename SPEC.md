@@ -2,7 +2,7 @@
 
 Wc kód menedzselő alkalmazás, melyben a regisztrált és bejelentkezett felhasználó képes új wc kódot felvinni. A felvételnél meg lehet adni képet a helyről, a kódot, leírást, címet. Az egyes wc kódokra rákattintva lehet véleményeket felvinni és értékelni is. Saját wc kódot és véleményt lehet szerkeszteni és törölni is. A saját felvitt kódokhoz tartozó vélemyényeket a kód tulaja is törölheti, mint egy moderátor.
 Az alkalmazás Angular használatával fog elkészülni. A megjelenítéshez Angular Material és Tailwind css lesz alkalmazva, saját css-el kiegészítve.
-Az oldalak és megjelenítés koncepcióját tekintve a szerveroldai félévesre elkészített alkalmazáshoz hasonló lesz csak nem bootstram. Onnan csatolok be pár képet.
+Az oldalak és megjelenítés koncepcióját tekintve a szerveroldai félévesre elkészített alkalmazáshoz hasonló lesz. Onnan csatolok be pár képet.
 
 ### Funkció lista
 | Funkció |
