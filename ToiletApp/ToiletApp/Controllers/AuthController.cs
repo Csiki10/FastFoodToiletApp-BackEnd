@@ -69,7 +69,7 @@ namespace ToiletApp.Controllers
             return Ok();
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public async Task<IActionResult> GetUserInfos()
         {
@@ -90,7 +90,7 @@ namespace ToiletApp.Controllers
             return Unauthorized();
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpDelete]
         public async Task<IActionResult> DeleteMyself()
         {

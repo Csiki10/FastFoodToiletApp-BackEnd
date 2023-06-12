@@ -22,7 +22,7 @@ namespace ToiletApp.Models
 
         [NotMapped]
         [JsonIgnore]
-        public virtual Toilet Toilet { get; set; }
+        public virtual Toilet? Toilet { get; set; }
       
         [ForeignKey(nameof(Toilet))]
         public string ToiletUid { get; set; }

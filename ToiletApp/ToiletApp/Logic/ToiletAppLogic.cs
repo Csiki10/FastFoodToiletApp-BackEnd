@@ -28,7 +28,7 @@ namespace ToiletApp.Logic
             {
                 t.Uid = Guid.NewGuid().ToString();
             }
-            var old = db.Toilets.FirstOrDefault(t => t.Equals(t));
+            var old = db.Toilets.FirstOrDefault(x => x.Equals(t));
             if (old == null)
             {
                 db.Toilets.Add(t);
