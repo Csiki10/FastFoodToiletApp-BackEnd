@@ -6,7 +6,7 @@ namespace ToiletApp.Logic
     {
         void AddNewToilet(Toilet t);
         void AddOpinion(Opinion opinion);
-        void DeleteOpinion(string tuid, string ouid, string u);
+        void DeleteOpinion(string tuid, string ouid);
         void DeleteToilet(string id);
         IEnumerable<Toilet> GetAllToilets();
         Toilet? GetToilet(string id);
