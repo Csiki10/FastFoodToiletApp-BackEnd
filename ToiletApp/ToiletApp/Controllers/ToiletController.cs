@@ -8,6 +8,7 @@ namespace ToiletApp.Controllers
     [Route("[controller]")]
     public class ToiletController : ControllerBase
     {
+        //asd
         [HttpGet]
         public IEnumerable<Toilet> GetToilets()
         {
