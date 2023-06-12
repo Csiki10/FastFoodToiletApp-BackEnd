@@ -107,5 +107,18 @@ namespace ToiletApp.Logic
                 }
             }
         }
+
+        public void UpdateOpinion(Opinion opinion)
+        {
+            var old = db.Opinions.FirstOrDefault(x => x.Uid == opinion.Uid);
+            if (old != null)
+            {
+                old.Stars = opinion.Stars;
+                old.Date = opinion.Date;
+                old.Description = opinion.Description;
+
+                db.SaveChanges();
+            }
+        }
     }
 }

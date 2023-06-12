@@ -10,7 +10,7 @@ using ToiletApp.Models;
 namespace ToiletApp.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class AuthController : ControllerBase
     {
         private readonly UserManager<SiteUser> _userManager;

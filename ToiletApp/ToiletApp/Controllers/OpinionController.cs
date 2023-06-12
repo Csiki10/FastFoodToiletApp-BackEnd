@@ -31,6 +31,12 @@ namespace ToiletApp.Controllers
             _logic.AddOpinion(opinion);
         }
 
+        [HttpPut]
+        public void EditOpinion(Opinion opinion)
+        {
+            _logic.UpdateOpinion(opinion);
+        }
+
         [HttpDelete]
         public void DeleteOpinion(string tuid, string ouid)
         {
