@@ -95,16 +95,15 @@ namespace ToiletApp.Logic
 
         public void DeleteOpinion(string tuid, string ouid, string u)
         {
-            var toilet = _db.Toilets.FirstOrDefault(t => t.Uid == tuid);
+            var toilet = db.Toilets.FirstOrDefault(t => t.Uid == tuid);
             if (toilet != null)
             {
                 var op = toilet.Opinions.FirstOrDefault(o => o.Uid == ouid);
 
                 if (op != null && op.Toilet.UserId == u)
                 {
-                    _db.Opinions.Remove(op);
-                    _db.SaveChanges();
-
+                    db.Opinions.Remove(op);
+                    db.SaveChanges();
                 }
             }
         }
