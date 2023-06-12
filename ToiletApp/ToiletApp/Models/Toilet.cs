@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Net;
-using System.Xml.Linq;
+
 namespace ToiletApp.Models
 {
     public enum Institution
@@ -37,11 +36,8 @@ namespace ToiletApp.Models
         [Required]
         public Institution Institution { get; set; }
 
-        public string? ImageFileName { get; set; }
-
-        public string? ContentType { get; set; }
-
-        public byte[]? Data { get; set; }
+        [NotMapped]
+        public virtual AppFileData? ToiletPicture { get; set; }
 
         public Toilet()
         {
