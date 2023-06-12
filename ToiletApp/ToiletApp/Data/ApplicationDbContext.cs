@@ -38,23 +38,23 @@ namespace ToiletApp.Data
             csiki.PasswordHash = passwordHasher.HashPassword(csiki, "alma123");
             builder.Entity<SiteUser>().HasData(csiki);
 
-            //builder.Entity<Toilet>()
-            //    .HasOne(t => t.User)
-            //    .WithMany()
-            //    .HasForeignKey(t => t.UserId)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //builder.Entity<Toilet>()
-            //    .HasOne(t => t.Address)
-            //    .WithOne()
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //builder.Entity<Opinion>(entity =>
-            //{
-            //    entity.
-            //    HasOne(opinion => opinion.Toilet)
-            //    .WithMany(toilet => toilet.Opinions)
-            //    .HasForeignKey(opinion => opinion.ToiletUid)
-            //    .OnDelete(DeleteBehavior.Cascade);
-            //});
+            builder.Entity<Toilet>()
+                .HasOne(t => t.User)
+                .WithMany()
+                .HasForeignKey(t => t.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+            builder.Entity<Toilet>()
+                .HasOne(t => t.Address)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
+            builder.Entity<Opinion>(entity =>
+            {
+                entity.
+                HasOne(opinion => opinion.Toilet)
+                .WithMany(toilet => toilet.Opinions)
+                .HasForeignKey(opinion => opinion.ToiletUid)
+                .OnDelete(DeleteBehavior.Cascade);
+            });
 
             base.OnModelCreating(builder);
         }
