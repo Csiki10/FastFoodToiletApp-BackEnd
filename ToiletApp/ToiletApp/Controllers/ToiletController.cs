@@ -27,6 +27,7 @@ namespace ToiletApp.Controllers
         public IEnumerable<Toilet> GetToilets()
         {
             return db.Toilets;
+            //asd
         }
 
         [HttpGet("{id}")]
