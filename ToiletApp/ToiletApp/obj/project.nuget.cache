@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "LSCUPxq9/WdtNfs7p4GL5+IZL95flFUEbrH1cigN6QK+sFqN9xpodLwxwxtzi+n/2F9QRAYjLXnaFARKiRSEMA==",
+  "success": true,
+  "projectFilePath": "E:\\Óbudai Egyetem\\ToiletApp\\ToiletApp\\ToiletApp\\ToiletApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\G3\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\G3\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\G3\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\G3\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\G3\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\G3\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
