@@ -51,8 +51,8 @@ namespace ToiletApp.Data
 
             builder.Entity<Opinion>(entity =>
             {
-                entity.
-                HasOne(opinion => opinion.Toilet)
+                entity
+                .HasOne(opinion => opinion.Toilet)
                 .WithMany(toilet => toilet.Opinions)
                 .HasForeignKey(opinion => opinion.ToiletUid)
                 .OnDelete(DeleteBehavior.Cascade);

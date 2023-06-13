@@ -11,9 +11,11 @@ namespace ToiletApp.Models
         public string ContentType { get; set; }
         public string FileName { get; set; }
 
-        [Required]
         [NotMapped]
         [JsonIgnore]
-        public Toilet Toilet { get; set; }
+        public virtual Toilet Toilet { get; set; }
+
+        [ForeignKey(nameof(Toilet))]
+        public string ToiletUid { get; set; }
     }
 }
