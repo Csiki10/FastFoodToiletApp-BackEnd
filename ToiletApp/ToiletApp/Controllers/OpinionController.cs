@@ -39,7 +39,7 @@ namespace ToiletApp.Controllers
         [HttpDelete]
         public void DeleteOpinion(string tuid, string ouid)
         {
-            _logic.DeleteOpinion(tuid, ouid, _userManager.GetUserId(this.User));
+            _logic.DeleteOpinion(tuid, ouid);
         }
     }
 }

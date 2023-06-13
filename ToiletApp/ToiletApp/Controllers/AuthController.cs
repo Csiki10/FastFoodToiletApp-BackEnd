@@ -81,7 +81,7 @@ namespace ToiletApp.Controllers
             return Ok();
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public async Task<IActionResult> GetUserInfos()
         {
@@ -102,7 +102,7 @@ namespace ToiletApp.Controllers
             return Unauthorized();
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpDelete]
         public async Task<IActionResult> DeleteMyself()
         {
@@ -115,7 +115,6 @@ namespace ToiletApp.Controllers
             return BadRequest();
         }
 
-        [Route("[action]")]
         [HttpPost]
         public async Task<IActionResult> Update([FromBody] RegisterViewModel model)
         {
@@ -134,85 +133,6 @@ namespace ToiletApp.Controllers
             await _userManager.UpdateAsync(user);
             return Ok();
         }
-
-        //[Route("[action]")]
-        //[HttpPost]
-        //public async Task<IActionResult> Microsoft([FromBody] SocialToken token)
-        //{
-        //    HttpClient client = new HttpClient();
-        //    client.BaseAddress = new Uri("https://graph.microsoft.com");
-        //    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-        //    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.Token);
-        //    var response = await client.GetAsync("/oidc/userinfo");
-        //    MsModel? userInfo = new MsModel();
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        userInfo = await response.Content.ReadFromJsonAsync<MsModel>();
-        //        AppUser user = new AppUser
-        //        {
-        //            FirstName = userInfo.given_name,
-        //            LastName = userInfo.family_name,
-        //            Email = userInfo.email,
-        //            UserName = userInfo.email,
-        //            EmailConfirmed = true
-        //        };
-        //        return await SocialAuth(user);
-        //    }
-        //    return BadRequest(new ErrorModel() { Message = "Ms login failed" });
-        //}
-
-
-        //[Route("[action]")]
-        //[HttpPost]
-        //public async Task<IActionResult> Facebook([FromBody] SocialToken token)
-        //{
-        //    HttpClient client = new HttpClient();
-        //    client.BaseAddress = new Uri("https://graph.facebook.com");
-        //    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-        //    var response = await client.GetAsync($"me?fields=first_name,last_name,picture,email&access_token={token.Token}");
-        //    var result = await response.Content.ReadFromJsonAsync<FbModel>();
-        //    if (result != null)
-        //    {
-        //        AppUser user = new AppUser
-        //        {
-        //            FirstName = result.last_name,
-        //            LastName = result.first_name,
-        //            Email = result.email,
-        //            UserName = result.email,
-        //        };
-
-        //        return await SocialAuth(user);
-        //    }
-        //    return Unauthorized();
-        //}
-
-
-        //[Route("[action]")]
-        //[HttpPost]
-        //public async Task<IActionResult> Google([FromBody] SocialToken token)
-        //{
-        //    HttpClient client = new HttpClient();
-        //    client.BaseAddress = new Uri("https://oauth2.googleapis.com");
-        //    client.DefaultRequestHeaders.Accept.Add(
-        //        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-        //    var response = await client.GetAsync($"tokeninfo?id_token={token.Token}");
-        //    var result = await response.Content.ReadFromJsonAsync<GoogleModel>();
-
-        //    if (result != null)
-        //    {
-        //        AppUser user = new AppUser
-        //        {
-        //            FirstName = result.given_name,
-        //            LastName = result.family_name,
-        //            Email = result.email,
-        //            UserName = result.email,
-        //        };
-        //        return await SocialAuth(user);
-        //    }
-        //    return Unauthorized();
-        //}
-
-
 
         private async Task<IActionResult> SocialAuth(SiteUser user)
         {
