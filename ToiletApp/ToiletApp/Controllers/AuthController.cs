@@ -81,7 +81,7 @@ namespace ToiletApp.Controllers
             return Ok();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetUserInfos()
         {

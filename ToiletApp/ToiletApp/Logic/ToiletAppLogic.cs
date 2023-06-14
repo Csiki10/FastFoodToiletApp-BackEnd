@@ -1,4 +1,5 @@
-﻿using ToiletApp.Data;
+﻿using Microsoft.AspNetCore.Identity;
+using ToiletApp.Data;
 using ToiletApp.Models;
 
 namespace ToiletApp.Logic
@@ -6,6 +7,7 @@ namespace ToiletApp.Logic
     public class ToiletAppLogic : IToiletAppLogic
     {
         ApplicationDbContext db;
+        
 
         public ToiletAppLogic(ApplicationDbContext db)
         {
@@ -22,15 +24,20 @@ namespace ToiletApp.Logic
             return db.Toilets.FirstOrDefault(t => t.Uid == id);
         }
 
-        public void AddNewToilet(Toilet t)
-        {
+        public void AddNewToilet(Toilet t,SiteUser user)
+        {        
             if (t.Uid == null)
             {
                 t.Uid = Guid.NewGuid().ToString();
             }
+
             var old = db.Toilets.FirstOrDefault(x => x.Equals(t));
+
             if (old == null)
             {
+                t.User = user;
+                t.UserId = user.Id;
+                t.Address.ToiletUid = t.Uid;
                 db.Toilets.Add(t);
                 db.SaveChanges();
             }

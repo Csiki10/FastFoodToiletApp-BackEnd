@@ -4,7 +4,7 @@ namespace ToiletApp.Logic
 {
     public interface IToiletAppLogic
     {
-        void AddNewToilet(Toilet t);
+        void AddNewToilet(Toilet t, SiteUser user);
         void AddOpinion(Opinion opinion);
         void DeleteOpinion(string tuid, string ouid);
         void DeleteToilet(string id);
