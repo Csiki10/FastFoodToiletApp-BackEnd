@@ -48,6 +48,7 @@ namespace ToiletApp.Controllers
 
                 return Ok(new
                 {
+                    uid = user.Id,
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     expiration = token.ValidTo.ToLocalTime()
                 });
@@ -91,6 +92,7 @@ namespace ToiletApp.Controllers
             {
                 return Ok(new
                 {
+                    UId = user.Id,
                     UserName = user.UserName,
                     FirstName = user.FirstName,
                     LastName = user.LastName,

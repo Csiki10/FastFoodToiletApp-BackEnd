@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kubar\\Source\\Repos\\Csiki10\\ToiletApp\\ToiletApp\\ToiletApp\\ToiletApp.csproj": {}
+    "E:\\Óbudai Egyetem\\ToiletApp\\ToiletApp\\ToiletApp\\ToiletApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kubar\\Source\\Repos\\Csiki10\\ToiletApp\\ToiletApp\\ToiletApp\\ToiletApp.csproj": {
+    "E:\\Óbudai Egyetem\\ToiletApp\\ToiletApp\\ToiletApp\\ToiletApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kubar\\Source\\Repos\\Csiki10\\ToiletApp\\ToiletApp\\ToiletApp\\ToiletApp.csproj",
+        "projectUniqueName": "E:\\Óbudai Egyetem\\ToiletApp\\ToiletApp\\ToiletApp\\ToiletApp.csproj",
         "projectName": "ToiletApp",
-        "projectPath": "C:\\Users\\kubar\\Source\\Repos\\Csiki10\\ToiletApp\\ToiletApp\\ToiletApp\\ToiletApp.csproj",
-        "packagesPath": "C:\\Users\\kubar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kubar\\Source\\Repos\\Csiki10\\ToiletApp\\ToiletApp\\ToiletApp\\obj\\",
+        "projectPath": "E:\\Óbudai Egyetem\\ToiletApp\\ToiletApp\\ToiletApp\\ToiletApp.csproj",
+        "packagesPath": "C:\\Users\\G3\\.nuget\\packages\\",
+        "outputPath": "E:\\Óbudai Egyetem\\ToiletApp\\ToiletApp\\ToiletApp\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\kubar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\G3\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -81,7 +85,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -93,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
