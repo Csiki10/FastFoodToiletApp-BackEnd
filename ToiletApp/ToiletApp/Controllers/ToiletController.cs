@@ -46,6 +46,7 @@ namespace ToiletApp.Controllers
             _logic.UpdateToilet(t);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public void DeleteToilet(string id)
         {
