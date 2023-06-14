@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ToiletApp",
+    "\\ToiletApp\\ToiletApp",
+    "\\ToiletApp\\ToiletApp\\Controllers"
   ],
+  "SelectedNode": "\\ToiletApp\\ToiletApp\\Controllers\\AuthController.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -21,7 +21,6 @@ namespace ToiletApp.Controllers
         [HttpGet("{toiletUid}")]
         public IEnumerable<Opinion> GetOpinions(string toiletUid)
         {
-
             return _logic.ListOpinions(toiletUid);
         }
 

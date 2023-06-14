@@ -43,18 +43,25 @@ namespace ToiletApp.Data
                 .WithMany()
                 .HasForeignKey(t => t.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
             builder.Entity<Toilet>()
                 .HasOne(t => t.Address)
                 .WithOne()
                 .OnDelete(DeleteBehavior.Cascade);
+
             builder.Entity<Opinion>(entity =>
             {
-                entity.
-                HasOne(opinion => opinion.Toilet)
+                entity
+                .HasOne(opinion => opinion.Toilet)
                 .WithMany(toilet => toilet.Opinions)
                 .HasForeignKey(opinion => opinion.ToiletUid)
                 .OnDelete(DeleteBehavior.Cascade);
             });
+
+            builder.Entity<Toilet>()
+                .HasOne(t => t.ToiletPicture)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(builder);
         }

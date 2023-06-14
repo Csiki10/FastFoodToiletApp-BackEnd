@@ -24,48 +24,60 @@ namespace ToiletApp.Controllers
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
             var user = await _userManager.FindByNameAsync(model.UserName);
+
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 var claim = new List<Claim>
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                new Claim(JwtRegisteredClaimNames.Name, user.UserName),
-                new Claim(JwtRegisteredClaimNames.NameId, user.UserName)
-            };
+                {
+                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Name, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.NameId, user.UserName)
+                };
+
                 foreach (var role in await _userManager.GetRolesAsync(user))
                 {
                     claim.Add(new Claim(ClaimTypes.Role, role));
                 }
+
                 var signinKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("nagyonhosszutitkoskodhelye"));
                 var token = new JwtSecurityToken(
                     issuer: "http://www.security.org", audience: "http://www.security.org",
                     claims: claim, expires: DateTime.Now.AddMinutes(60),
                     signingCredentials: new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256)
                 );
+
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
+                    expiration = token.ValidTo.ToLocalTime()
                 });
             }
+
             return Unauthorized();
         }
 
         [HttpPut]
-        public async Task<IActionResult> InsertUser([FromBody] RegisterViewModel model)
+        public async Task<IActionResult> InsertUser()
         {
+            var file = Request.Form.Files[0];
+
             var user = new SiteUser
             {
-                Email = model.Email,
-                UserName = model.UserName,
+                Email = Request.Form["email"],
+                UserName = Request.Form["userName"],
                 SecurityStamp = Guid.NewGuid().ToString(),
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                ContentType = model.ContentType,
-                Data = model.Data
+                FirstName = Request.Form["firstName"],
+                LastName = Request.Form["lastName"],
+                ContentType = file.ContentType
             };
-            await _userManager.CreateAsync(user, model.Password);
-            //await _userManager.AddToRoleAsync(user, "Customer");
+
+            using (var ms = new MemoryStream())
+            {
+                file.CopyTo(ms);
+                user.Data = ms.ToArray();
+            };
+
+            await _userManager.CreateAsync(user, Request.Form["password"]);
             return Ok();
         }
 
@@ -111,8 +123,8 @@ namespace ToiletApp.Controllers
             user.UserName = model.UserName;
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
-            user.ContentType = model.ContentType;
-            user.Data = model.Data;
+            //user.ContentType = model.ContentType;
+            //user.Data = model.Data;
             if (!(model.Password == null || model.Password.Length == 0))
             {
                 await _userManager.RemovePasswordAsync(user);
