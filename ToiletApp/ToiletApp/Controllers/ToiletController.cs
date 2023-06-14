@@ -26,6 +26,7 @@ namespace ToiletApp.Controllers
             return res;
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public Toilet? GetToilet(string id)
         {

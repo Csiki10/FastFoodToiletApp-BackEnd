@@ -130,42 +130,61 @@ namespace ToiletApp.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Google([FromBody] SocialToken token)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://oauth2.googleapis.com");
+            client.DefaultRequestHeaders.Accept.Add(
+              new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            var response = await client.GetAsync($"tokeninfo?id_token={token.Token}");
+            var result = await response.Content.ReadFromJsonAsync<GoogleModel>();
+
+            if (result != null)
+            {
+                SiteUser user = new SiteUser
+                {
+                    FirstName = result.given_name,
+                    LastName = result.family_name,
+                    Email = result.email,
+                    UserName = result.email,
+                };
+                return await SocialAuth(user);
+            }
+            return Unauthorized();
+        }
+
         private async Task<IActionResult> SocialAuth(SiteUser user)
         {
             if (_userManager.Users.FirstOrDefault(t => t.Email == user.Email) == null)
             {
                 var res = await _userManager.CreateAsync(user);
-                if (res.Succeeded)
-                {
-                    await _userManager.AddToRoleAsync(user, "Customer");
-                }
             }
+
             var appuser = _userManager.Users.FirstOrDefault(t => t.Email == user.Email);
+
             if (appuser != null)
             {
                 var claim = new List<Claim> {
-        new Claim(JwtRegisteredClaimNames.Sub, appuser.UserName),
-        new Claim(JwtRegisteredClaimNames.NameId, appuser.UserName),
-        new Claim(JwtRegisteredClaimNames.Name, appuser.UserName)
-    };
+                    new Claim(JwtRegisteredClaimNames.Sub, appuser.UserName),
+                    new Claim(JwtRegisteredClaimNames.NameId, appuser.UserName),
+                    new Claim(JwtRegisteredClaimNames.Name, appuser.UserName)
+                };
 
                 foreach (var role in await _userManager.GetRolesAsync(appuser))
                 {
                     claim.Add(new Claim(ClaimTypes.Role, role));
                 }
-                var signinKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes
-            ("nagyonhosszutitkoskodhelye"));
+                var signinKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("nagyonhosszutitkoskodhelye"));
                 var token = new JwtSecurityToken(
                     issuer: "http://www.security.org", audience: "http://www.security.org",
                     claims: claim, expires: DateTime.Now.AddMinutes(60),
-                    signingCredentials: new SigningCredentials
-            (signinKey, SecurityAlgorithms.HmacSha256)
-                );
+                    signingCredentials: new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256));
 
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
+                    expiration = token.ValidTo.ToLocalTime()
                 });
             }
             return Unauthorized();
