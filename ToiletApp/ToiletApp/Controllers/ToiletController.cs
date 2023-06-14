@@ -20,12 +20,12 @@ namespace ToiletApp.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
         public IEnumerable<Toilet> GetToilets()
         {
             return _logic.GetAllToilets();
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public Toilet? GetToilet(string id)
         {
