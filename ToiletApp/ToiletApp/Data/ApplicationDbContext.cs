@@ -23,20 +23,19 @@ namespace ToiletApp.Data
                    new { Id = "2", Name = "Customer", NormalizeName = "CUSTOMER" }
                );
 
-            PasswordHasher<SiteUser> passwordHasher = new PasswordHasher<SiteUser>();
-            SiteUser csiki = new SiteUser
-            {
-                Id = Guid.NewGuid().ToString(),
-                Email = "csiki@gmail.com",
-                EmailConfirmed = true,
-                UserName = "csiki",
-                FirstName = "Benedek",
-                LastName = "Csikós",
-                NormalizedUserName = "CSIKI"
-
-            };
-            csiki.PasswordHash = passwordHasher.HashPassword(csiki, "alma123");
-            builder.Entity<SiteUser>().HasData(csiki);
+            //PasswordHasher<SiteUser> passwordHasher = new PasswordHasher<SiteUser>();
+            //SiteUser csiki = new SiteUser
+            //{
+            //    Id = Guid.NewGuid().ToString(),
+            //    Email = "csiki@gmail.com",
+            //    EmailConfirmed = true,
+            //    UserName = "csiki123",
+            //    FirstName = "Benedek",
+            //    LastName = "Csikós",
+            //    NormalizedUserName = "CSIKI123"
+            //};
+            //csiki.PasswordHash = passwordHasher.HashPassword(csiki, "alma123");
+            //builder.Entity<SiteUser>().HasData(csiki);
 
             builder.Entity<Toilet>()
                 .HasOne(t => t.User)
