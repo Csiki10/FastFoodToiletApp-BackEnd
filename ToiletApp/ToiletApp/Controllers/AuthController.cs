@@ -81,10 +81,11 @@ namespace ToiletApp.Controllers
             return Ok();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetUserInfos()
         {
+            var u = this.User;
             var user = _userManager.Users.FirstOrDefault(t => t.UserName == this.User.Identity.Name);
             if (user != null)
             {
@@ -102,7 +103,7 @@ namespace ToiletApp.Controllers
             return Unauthorized();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpDelete]
         public async Task<IActionResult> DeleteMyself()
         {
@@ -115,21 +116,14 @@ namespace ToiletApp.Controllers
             return BadRequest();
         }
 
+        [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Update([FromBody] RegisterViewModel model)
+        public async Task<IActionResult> Update(RegisterViewModel model)
         {
             var user = _userManager.Users.FirstOrDefault(t => t.UserName == this.User.Identity.Name);
-            user.Email = model.Email;
             user.UserName = model.UserName;
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
-            //user.ContentType = model.ContentType;
-            //user.Data = model.Data;
-            if (!(model.Password == null || model.Password.Length == 0))
-            {
-                await _userManager.RemovePasswordAsync(user);
-                await _userManager.AddPasswordAsync(user, model.Password);
-            }
             await _userManager.UpdateAsync(user);
             return Ok();
         }
