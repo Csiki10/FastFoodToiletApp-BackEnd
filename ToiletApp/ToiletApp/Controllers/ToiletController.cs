@@ -20,7 +20,6 @@ namespace ToiletApp.Controllers
         }
 
         [HttpGet]
-        
         public IEnumerable<Toilet> GetToilets()
         {
             var res = _logic.GetAllToilets();
@@ -47,6 +46,7 @@ namespace ToiletApp.Controllers
             _logic.UpdateToilet(t);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public void DeleteToilet(string id)
         {
