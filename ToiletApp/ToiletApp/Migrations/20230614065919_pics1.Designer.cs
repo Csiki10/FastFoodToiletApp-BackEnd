@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToiletApp.Data;
 
@@ -11,9 +12,10 @@ using ToiletApp.Data;
 namespace ToiletApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230614065919_pics1")]
+    partial class pics1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -370,6 +372,25 @@ namespace ToiletApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("SiteUser");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "260c2b4c-b828-4eae-8659-eb94f55603cd",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "a9ef834e-1bdb-4329-a2c5-5ef3245c4848",
+                            Email = "csiki@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "CSIKI",
+                            PasswordHash = "AQAAAAEAACcQAAAAECWKoG8VbMcjKtpmif13xI5NLyRrGtZNzozWlDLV1GlwBeBiR9h81MeicJ2icTHJvA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "d6a90e42-aa84-40a2-9e7b-8c3d6bb13be7",
+                            TwoFactorEnabled = false,
+                            UserName = "csiki",
+                            FirstName = "Benedek",
+                            LastName = "Csikós"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
