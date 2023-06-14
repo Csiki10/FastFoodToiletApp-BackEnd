@@ -20,6 +20,7 @@ namespace ToiletApp.Controllers
         }
 
         [HttpGet]
+        
         public IEnumerable<Toilet> GetToilets()
         {
             var res = _logic.GetAllToilets();
