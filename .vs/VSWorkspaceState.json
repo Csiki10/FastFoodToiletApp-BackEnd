@@ -3,8 +3,9 @@
     "",
     "\\ToiletApp",
     "\\ToiletApp\\ToiletApp",
-    "\\ToiletApp\\ToiletApp\\Controllers"
+    "\\ToiletApp\\ToiletApp\\Controllers",
+    "\\ToiletApp\\ToiletApp\\Logic"
   ],
-  "SelectedNode": "\\ToiletApp\\ToiletApp\\Controllers\\AuthController.cs",
+  "SelectedNode": "\\ToiletApp\\ToiletApp\\Logic\\ToiletAppLogic.cs",
   "PreviewInSolutionExplorer": false
 }
