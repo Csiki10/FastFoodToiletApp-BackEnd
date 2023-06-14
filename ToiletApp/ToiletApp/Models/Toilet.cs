@@ -36,6 +36,8 @@ namespace ToiletApp.Models
         [Required]
         public Institution Institution { get; set; }
 
+        public string? ImageUrl { get; set; }
+
         [NotMapped]
         public virtual AppFileData? ToiletPicture { get; set; }
 

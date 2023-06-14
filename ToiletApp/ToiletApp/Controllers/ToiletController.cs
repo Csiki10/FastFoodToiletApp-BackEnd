@@ -22,7 +22,8 @@ namespace ToiletApp.Controllers
         [HttpGet]
         public IEnumerable<Toilet> GetToilets()
         {
-            return _logic.GetAllToilets();
+            var res = _logic.GetAllToilets();
+            return res;
         }
 
         [Authorize]
@@ -32,10 +33,12 @@ namespace ToiletApp.Controllers
             return _logic.GetToilet(id);
         }
 
+        [Authorize]
         [HttpPost]
         public void AddToilet([FromBody] Toilet t)
         {
-            _logic.AddNewToilet(t);
+            var user = _userManager.Users.FirstOrDefault(t => t.UserName == this.User.Identity.Name);
+            _logic.AddNewToilet(t,user);
         }
 
         [HttpPut]
