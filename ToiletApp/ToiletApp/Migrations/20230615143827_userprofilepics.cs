@@ -4,23 +4,22 @@
 
 namespace ToiletApp.Migrations
 {
-    public partial class useruid : Migration
+    public partial class userprofilepics : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "userUid",
-                table: "Opinions",
+                name: "ImageUrl",
+                table: "AspNetUsers",
                 type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: "");
+                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "userUid",
-                table: "Opinions");
+                name: "ImageUrl",
+                table: "AspNetUsers");
         }
     }
 }

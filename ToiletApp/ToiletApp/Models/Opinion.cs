@@ -26,7 +26,7 @@ namespace ToiletApp.Models
       
         [ForeignKey(nameof(Toilet))]
         public string ToiletUid { get; set; }
-
+        //asd
         public string userUid { get; set; }
         public Opinion()
         {

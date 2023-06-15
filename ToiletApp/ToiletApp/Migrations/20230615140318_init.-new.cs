@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ToiletApp.Migrations
 {
-    public partial class init : Migration
+    public partial class initnew : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -231,7 +231,8 @@ namespace ToiletApp.Migrations
                     Stars = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ToiletUid = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    ToiletUid = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    userUid = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

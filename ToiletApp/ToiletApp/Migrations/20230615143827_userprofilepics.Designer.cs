@@ -12,8 +12,8 @@ using ToiletApp.Data;
 namespace ToiletApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230615131728_useruid")]
-    partial class useruid
+    [Migration("20230615143827_userprofilepics")]
+    partial class userprofilepics
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -372,6 +372,9 @@ namespace ToiletApp.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
