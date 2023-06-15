@@ -37,6 +37,8 @@ namespace ToiletApp.Controllers
         [HttpPost]
         public void AddOpinion(Opinion opinion)
         {
+            var user = _userManager.Users.FirstOrDefault(t => t.UserName == this.User.Identity.Name);
+            opinion.userUid = user.Id;
             _logic.AddOpinion(opinion);
         }
 
