@@ -33,6 +33,7 @@ namespace ToiletApp.Controllers
             return _logic.GetOpinion(opinionUid);
         }
 
+        [Authorize]
         [HttpPost]
         public void AddOpinion(Opinion opinion)
         {
