@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ToiletApp.Logic;
 using ToiletApp.Models;
@@ -18,6 +19,7 @@ namespace ToiletApp.Controllers
             _userManager = userManager;
         }
 
+        [Authorize]
         [HttpGet("{toiletUid}")]
         public IEnumerable<Opinion> GetOpinions(string toiletUid)
         {
