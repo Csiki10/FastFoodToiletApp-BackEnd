@@ -26,14 +26,22 @@ namespace ToiletApp.Controllers
             return _logic.ListOpinions(toiletUid);
         }
 
+        [Authorize]
+        [HttpGet("{opinionUid}")]
+        public Opinion GetEditOpinion(string opinionUid)
+        {
+            return _logic.GetOpinion(opinionUid);
+        }
+
         [HttpPost]
         public void AddOpinion(Opinion opinion)
         {
             _logic.AddOpinion(opinion);
         }
 
+        [Authorize]
         [HttpPut]
-        public void EditOpinion(Opinion opinion)
+        public void EditOpinion([FromBody] UpdateOpinionViewmodel opinion)
         {
             _logic.UpdateOpinion(opinion);
         }
