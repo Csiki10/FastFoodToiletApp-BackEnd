@@ -6,6 +6,6 @@
     "\\ToiletApp\\ToiletApp\\Controllers",
     "\\ToiletApp\\ToiletApp\\Logic"
   ],
-  "SelectedNode": "\\ToiletApp\\ToiletApp\\Logic\\ToiletAppLogic.cs",
+  "SelectedNode": "\\ToiletApp\\ToiletApp\\Controllers\\ToiletController.cs",
   "PreviewInSolutionExplorer": false
 }
