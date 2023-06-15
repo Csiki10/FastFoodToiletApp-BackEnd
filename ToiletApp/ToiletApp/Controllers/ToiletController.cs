@@ -22,8 +22,7 @@ namespace ToiletApp.Controllers
         [HttpGet]
         public IEnumerable<Toilet> GetToilets()
         {
-            var res = _logic.GetAllToilets();
-            return res;
+            return _logic.GetAllToilets();
         }
 
         [Authorize]
@@ -42,7 +41,7 @@ namespace ToiletApp.Controllers
         }
 
         [HttpPut]
-        public void EditToilet([FromBody] Toilet t)
+        public void EditToilet([FromBody] UpdateToiletViewModel t)
         {
             _logic.UpdateToilet(t);
         }

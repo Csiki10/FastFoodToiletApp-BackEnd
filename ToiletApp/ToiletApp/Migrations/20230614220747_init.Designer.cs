@@ -12,8 +12,8 @@ using ToiletApp.Data;
 namespace ToiletApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230614070225_pics3")]
-    partial class pics3
+    [Migration("20230614220747_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -338,6 +338,9 @@ namespace ToiletApp.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Institution")
                         .HasColumnType("int");

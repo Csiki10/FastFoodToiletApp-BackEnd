@@ -5,25 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ToiletApp.Migrations
 {
-    public partial class @base : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Addresses",
-                columns: table => new
-                {
-                    Uid = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
-                    Street = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
-                    PostCode = table.Column<int>(type: "int", nullable: false),
-                    ToiletUid = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Addresses", x => x.Uid);
-                });
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -66,38 +51,6 @@ namespace ToiletApp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Opinions",
-                columns: table => new
-                {
-                    Uid = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Stars = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ToiletUid = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Opinions", x => x.Uid);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Toilets",
-                columns: table => new
-                {
-                    Uid = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Code = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Institution = table.Column<int>(type: "int", nullable: false),
-                    ImageFileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ContentType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Data = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Toilets", x => x.Uid);
                 });
 
             migrationBuilder.CreateTable(
@@ -206,6 +159,91 @@ namespace ToiletApp.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Toilets",
+                columns: table => new
+                {
+                    Uid = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Institution = table.Column<int>(type: "int", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Toilets", x => x.Uid);
+                    table.ForeignKey(
+                        name: "FK_Toilets_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Addresses",
+                columns: table => new
+                {
+                    Uid = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Street = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    PostCode = table.Column<int>(type: "int", nullable: false),
+                    ToiletUid = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Addresses", x => x.Uid);
+                    table.ForeignKey(
+                        name: "FK_Addresses_Toilets_ToiletUid",
+                        column: x => x.ToiletUid,
+                        principalTable: "Toilets",
+                        principalColumn: "Uid",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppFileData",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Content = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    ContentType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ToiletUid = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppFileData", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AppFileData_Toilets_ToiletUid",
+                        column: x => x.ToiletUid,
+                        principalTable: "Toilets",
+                        principalColumn: "Uid",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Opinions",
+                columns: table => new
+                {
+                    Uid = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Stars = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ToiletUid = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Opinions", x => x.Uid);
+                    table.ForeignKey(
+                        name: "FK_Opinions_Toilets_ToiletUid",
+                        column: x => x.ToiletUid,
+                        principalTable: "Toilets",
+                        principalColumn: "Uid",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
@@ -216,10 +254,18 @@ namespace ToiletApp.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[] { "2", null, "Customer", null });
 
-            migrationBuilder.InsertData(
-                table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "ContentType", "Data", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "b3fcbc38-e389-4282-932d-538c1c3656d2", 0, "642f91e8-e6bc-4059-a7f0-e69fcd2cfde5", null, null, "SiteUser", "csiki@gmail.com", true, "Benedek", "Csikós", false, null, null, "CSIKI", "AQAAAAEAACcQAAAAEHObGZlpwPPl0DGjPETkgfqDKv+8zuV0A6kK4OeKODywUUBGoQlrsVbawrBr1crFYQ==", null, false, "6a49c649-3072-423d-823b-bea634e5cbfd", false, "csiki" });
+            migrationBuilder.CreateIndex(
+                name: "IX_Addresses_ToiletUid",
+                table: "Addresses",
+                column: "ToiletUid",
+                unique: true,
+                filter: "[ToiletUid] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppFileData_ToiletUid",
+                table: "AppFileData",
+                column: "ToiletUid",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -259,12 +305,25 @@ namespace ToiletApp.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Opinions_ToiletUid",
+                table: "Opinions",
+                column: "ToiletUid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Toilets_UserId",
+                table: "Toilets",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Addresses");
+
+            migrationBuilder.DropTable(
+                name: "AppFileData");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -285,10 +344,10 @@ namespace ToiletApp.Migrations
                 name: "Opinions");
 
             migrationBuilder.DropTable(
-                name: "Toilets");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "Toilets");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

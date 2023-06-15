@@ -2,14 +2,15 @@
 {
     public class UpdateToiletViewModel
     {
-        public string Uid { get; set; }
+        public string Id { get; set; }
 
         public string Code { get; set; }
+        public string userId { get; set; }
 
         public virtual Address Address { get; set; }
 
         public Institution Institution { get; set; }
 
-        public virtual AppFileData? ToiletPicture { get; set; }
+        public string? ImageUrl { get; set; }
     }
 }

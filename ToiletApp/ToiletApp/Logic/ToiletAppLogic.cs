@@ -43,12 +43,13 @@ namespace ToiletApp.Logic
             }
         }
 
-        public void UpdateToilet(Toilet t)
+        public void UpdateToilet(UpdateToiletViewModel t)
         {
-            var old = db.Toilets.FirstOrDefault(x => x.Uid == t.Uid);
+            var old = db.Toilets.FirstOrDefault(x => x.Uid == t.Id);
             if (old != null)
             {
                 old.Code = t.Code;
+                old.ImageUrl = t.ImageUrl;
                 old.Institution = t.Institution;
 
                 if (old.Address != null)

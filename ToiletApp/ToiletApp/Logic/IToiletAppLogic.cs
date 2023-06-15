@@ -11,7 +11,7 @@ namespace ToiletApp.Logic
         IEnumerable<Toilet> GetAllToilets();
         Toilet? GetToilet(string id);
         IEnumerable<Opinion> ListOpinions(string toiletUid);
-        void UpdateToilet(Toilet t);
+        void UpdateToilet(UpdateToiletViewModel t);
         void UpdateOpinion(Opinion opinion);
     }
 }
