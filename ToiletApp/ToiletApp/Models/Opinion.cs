@@ -26,6 +26,8 @@ namespace ToiletApp.Models
       
         [ForeignKey(nameof(Toilet))]
         public string ToiletUid { get; set; }
+
+        public string userUid { get; set; }
         public Opinion()
         {
             Uid = Guid.NewGuid().ToString();

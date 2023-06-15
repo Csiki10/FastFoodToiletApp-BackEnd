@@ -320,6 +320,10 @@ namespace ToiletApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("userUid")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Uid");
 
                     b.HasIndex("ToiletUid");

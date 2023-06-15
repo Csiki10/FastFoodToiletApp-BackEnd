@@ -27,14 +27,24 @@ namespace ToiletApp.Controllers
         }
 
         [Authorize]
+        [HttpGet("{opinionUid}")]
+        public Opinion GetEditOpinion(string opinionUid)
+        {
+            return _logic.GetOpinion(opinionUid);
+        }
+
+        [Authorize]
         [HttpPost]
         public void AddOpinion(Opinion opinion)
         {
+            var user = _userManager.Users.FirstOrDefault(t => t.UserName == this.User.Identity.Name);
+            opinion.userUid = user.Id;
             _logic.AddOpinion(opinion);
         }
 
+        [Authorize]
         [HttpPut]
-        public void EditOpinion(Opinion opinion)
+        public void EditOpinion([FromBody] UpdateOpinionViewmodel opinion)
         {
             _logic.UpdateOpinion(opinion);
         }

@@ -86,6 +86,19 @@ namespace ToiletApp.Logic
             }
         }
 
+        public Opinion GetOpinion(string opinionUid)
+        {
+            var opinion = db.Opinions.FirstOrDefault(o => o.Uid == opinionUid);
+            if(opinion != null)
+            {
+                return opinion;
+            }
+            else
+            {
+                return new Opinion();
+            }
+        }
+
         public void AddOpinion(Opinion opinion)
         {
             var toilet = db.Toilets.FirstOrDefault(t => t.Uid == opinion.ToiletUid);
@@ -96,6 +109,7 @@ namespace ToiletApp.Logic
             else
             {
                 opinion.Toilet = toilet;
+                opinion.Date = opinion.Date.AddDays(1);
                 db.Opinions.Add(opinion);
                 db.SaveChanges();
             }
@@ -116,13 +130,13 @@ namespace ToiletApp.Logic
             }
         }
 
-        public void UpdateOpinion(Opinion opinion)
+        public void UpdateOpinion(UpdateOpinionViewmodel opinion)
         {
-            var old = db.Opinions.FirstOrDefault(x => x.Uid == opinion.Uid);
+            var old = db.Opinions.FirstOrDefault(x => x.Uid == opinion.Id);
             if (old != null)
             {
                 old.Stars = opinion.Stars;
-                old.Date = opinion.Date;
+                old.Date = opinion.Date.AddDays(1);
                 old.Description = opinion.Description;
 
                 db.SaveChanges();
