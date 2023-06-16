@@ -101,7 +101,8 @@ namespace ToiletApp.Controllers
                     Email = user.Email,
                     PhotoData = user.Data,
                     PhotoContentType = user.ContentType,
-                    Roles = await _userManager.GetRolesAsync(user)
+                    Roles = await _userManager.GetRolesAsync(user),
+                    ImageUrl = user.ImageUrl
                 });
             }
             return Unauthorized();
