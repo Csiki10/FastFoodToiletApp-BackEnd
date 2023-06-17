@@ -12,8 +12,8 @@ using ToiletApp.Data;
 namespace ToiletApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230615143827_userprofilepics")]
-    partial class userprofilepics
+    [Migration("20230617093230_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -60,8 +60,6 @@ namespace ToiletApp.Controllers
         [HttpPut]
         public async Task<IActionResult> InsertUser()
         {
-            //var file = Request.Form.Files[0];
-
             var user = new SiteUser
             {
                 Email = Request.Form["email"],
@@ -69,16 +67,8 @@ namespace ToiletApp.Controllers
                 SecurityStamp = Guid.NewGuid().ToString(),
                 FirstName = Request.Form["firstName"],
                 LastName = Request.Form["lastName"],
-                //ContentType = file.ContentType,
                 ImageUrl = Request.Form["imageUrl"]
             };
-
-            int a = 0;
-            //using (var ms = new MemoryStream())
-            //{
-            //    file.CopyTo(ms);
-            //    user.Data = ms.ToArray();
-            //};
 
             await _userManager.CreateAsync(user, Request.Form["password"]);
             return Ok();
