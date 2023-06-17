@@ -136,7 +136,12 @@ namespace ToiletApp.Logic
             if (old != null)
             {
                 old.Stars = opinion.Stars;
-                old.Date = opinion.Date.AddDays(1);
+
+                if (old.Date != opinion.Date)
+                {
+                    old.Date = opinion.Date.AddDays(1);
+                }
+
                 old.Description = opinion.Description;
 
                 db.SaveChanges();
