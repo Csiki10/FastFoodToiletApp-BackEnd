@@ -19,7 +19,6 @@ namespace ToiletApp.Controllers
             _userManager = userManager;
         }
 
-        [Authorize]
         [HttpGet("{toiletUid}")]
         public IEnumerable<Opinion> GetOpinions(string toiletUid)
         {
