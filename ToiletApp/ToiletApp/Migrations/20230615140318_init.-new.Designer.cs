@@ -12,8 +12,8 @@ using ToiletApp.Data;
 namespace ToiletApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230614220747_init")]
-    partial class init
+    [Migration("20230615140318_init.-new")]
+    partial class initnew
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -321,6 +321,10 @@ namespace ToiletApp.Migrations
                     b.Property<string>("ToiletUid")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("userUid")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Uid");
 

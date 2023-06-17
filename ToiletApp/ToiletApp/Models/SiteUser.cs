@@ -11,5 +11,6 @@ namespace ToiletApp.Models
         public string LastName { get; set; }
         public string? ContentType { get; set; }
         public byte[]? Data { get; set; }
+        public string? ImageUrl { get; set; }
     }
 }
